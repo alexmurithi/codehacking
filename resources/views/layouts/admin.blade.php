@@ -29,7 +29,7 @@
 
 </head>
 
-<body id="admin-page">
+<body id="admin-page" style="padding-top:0">
 
 <div id="wrapper">
 
@@ -333,6 +333,7 @@
             <div class="col-lg-12">
                 <h1 class="page-header"></h1>
 
+                <!-- @yield('content') -->
                 @yield('content')
             </div>
             <!-- /.col-lg-12 -->

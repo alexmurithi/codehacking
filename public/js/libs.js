@@ -6,7 +6,7 @@
  * Made by Osman Nuri Okumus
  * Under MIT License
  */
-(function($, window, document, undefined) {
+;(function($, window, document, undefined) {
 
     var pluginName = "metisMenu",
         defaults = {
@@ -117,7 +117,7 @@
         return this;
     };
 
-});(jQuery, window, document);
+})(jQuery, window, document);
 $(function() {
 
     $('#side-menu').metisMenu();
