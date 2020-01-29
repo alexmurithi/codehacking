@@ -35,6 +35,11 @@ Route::get('admin/users/create',[
        'uses'=>'AdminUsersController@create'
 ]);
 
+Route::get('admin/users/edit/{id}',[
+    'as'=>'admin.users.edit',
+    'uses'=>'AdminUsersController@edit'
+]);
+
 
 Auth::routes();
 

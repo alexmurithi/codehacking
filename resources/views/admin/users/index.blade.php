@@ -26,13 +26,14 @@
 
 
             <td>{{$user->id}}</td>
-            <td><img src="{{$user->photo ? $user->photo->path : "No photo found!"}}" id="userPhoto" class="img-responsive img-rounded" alt="" width="50px"></td>
+            <td><img src="{{$user->photo ? $user->photo->path : "No photo found!"}}" id="userPhoto" class="img-responsive"  alt="" width="50px"></td>
             <td>{{$user->name}}</td>
             <td>{{$user->email}}</td>
             <td>{{$user->role->name}}</td>
             <td>{{$user->is_active==1? 'Active' :'Inactive'}}</td>
             <td>{{$user->created_at}}</td>
             <td>{{$user->updated_at}}</td>
+             <td><a type="button" class="btn btn-primary" href="{{route('admin.users.edit',$user->id)}}">Edit</a></td>
 
 
       </tr>
@@ -42,4 +43,13 @@
 
     </tbody>
   </table>
+
+    <style>
+        #userPhoto{
+            width:50px;
+            height:50px;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+    </style>
 @stop
