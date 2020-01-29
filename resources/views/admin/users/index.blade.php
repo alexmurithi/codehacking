@@ -1,3 +1,5 @@
+
+
 @extends('layouts.admin')
 
 @section('content')
@@ -10,20 +12,30 @@
         <th>Name</th>
         <th>Email</th>
         <th>Role</th>
+          <th>Account Status</th>
+          <th>Created</th>
+          <th>Update</th>
 
       </tr>
     </thead>
     <tbody>
+    @if($users)
+        @foreach($users as $user)
       <tr>
-        @if($users)
-            @foreach($users as $user)
+
+
             <td>{{$user->id}}</td>
             <td>{{$user->name}}</td>
             <td>{{$user->email}}</td>
             <td>{{$user->role->name}}</td>
-            @endforeach
-        @endif
+            <td>{{$user->is_active==1? 'Active' :'Inactive'}}</td>
+            <td>{{$user->created_at}}</td>
+            <td>{{$user->updated_at}}</td>
+
+
       </tr>
+        @endforeach
+    @endif
 
 
     </tbody>
