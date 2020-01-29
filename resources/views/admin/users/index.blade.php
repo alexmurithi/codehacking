@@ -9,6 +9,7 @@
     <thead>
       <tr>
         <th>Id</th>
+          <th>Photo</th>
         <th>Name</th>
         <th>Email</th>
         <th>Role</th>
@@ -25,6 +26,7 @@
 
 
             <td>{{$user->id}}</td>
+            <td><img src="{{$user->photo ? $user->photo->path : "No photo found!"}}" id="userPhoto" class="img-responsive img-rounded" alt="" width="50px"></td>
             <td>{{$user->name}}</td>
             <td>{{$user->email}}</td>
             <td>{{$user->role->name}}</td>
