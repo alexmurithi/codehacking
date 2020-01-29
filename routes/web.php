@@ -21,12 +21,20 @@ Route::get('/admin',function(){
 });
 
 
-
 Auth::routes();
 
 Route::resource('/admin/users','AdminUsersController');
 
-// Route::get('/home', 'HomeController@index')->name('home');
+Route::get('admin/users',[
+    'uses'=>'AdminUsersController@index',
+    'as'=>'admin.users.index'
+]);
+
+Route::get('admin/users/create',[
+       'as'=>'admin.users.create',
+       'uses'=>'AdminUsersController@create'
+]);
+
 
 Auth::routes();
 
