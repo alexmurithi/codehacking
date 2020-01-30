@@ -4,7 +4,11 @@
 
 @section('content')
   <h3>Users</h3>
-
+      @if(Session::has('deleted_user'))
+            <div class="alert alert-info">
+                <strong>{{session('deleted_user')}}</strong>
+            </div>
+          @endif
   <table class="table">
     <thead>
       <tr>
@@ -45,6 +49,10 @@
       </tr>
         @endforeach
     @endif
+
+
+
+
 
 
     </tbody>
