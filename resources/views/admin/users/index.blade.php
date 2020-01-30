@@ -34,6 +34,12 @@
             <td>{{$user->created_at}}</td>
             <td>{{$user->updated_at}}</td>
              <td><a type="button" class="btn btn-primary" href="{{route('admin.users.edit',$user->id)}}">Edit</a></td>
+           <td>
+               {!! Form::open(['method'=>'DELETE','action'=>['AdminUsersController@destroy',$user->id]]) !!}
+
+                    {!! Form::submit('Delete',['class'=>'btn btn-danger']) !!}
+               {!! Form::close() !!}
+           </td>
 
 
       </tr>

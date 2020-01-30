@@ -127,6 +127,8 @@ class AdminUsersController extends Controller
      */
     public function destroy($id)
     {
-        //
+        User::find($id)->delete();
+
+        return redirect('/admin/users');
     }
 }
