@@ -33,6 +33,7 @@ Route::group(['middleware'=>'admin'],function(){
     Route::resource('/admin/users','AdminUsersController');
 
     Route::resource('/admin/posts','AdminPostsController');
+    Route::resource('/admin/categories','AdminCategoriesController');
 
     Route::get('admin/users',[
         'uses'=>'AdminUsersController@index',
@@ -57,6 +58,16 @@ Route::group(['middleware'=>'admin'],function(){
     Route::get('admin/posts/create',[
         'as'=>'admin.posts.create',
         'uses'=>'AdminPostsController@create'
+    ]);
+
+    Route::get('admin/categories',[
+        'as'=>'admin.categories',
+        'uses'=>'AdminCategoriesController@index'
+    ]);
+
+    Route::get('admin/categories/create',[
+        'as'=>'admin.categories.create',
+        'uses'=>'AdminCategoriesController@create'
     ]);
 
 });
