@@ -70,6 +70,11 @@ Route::group(['middleware'=>'admin'],function(){
         'uses'=>'AdminCategoriesController@create'
     ]);
 
+    Route::get('admin/categories/{id}/edit',[
+        'as'=>'admin.categories.edit',
+        'uses'=>'AdminCategoriesController@edit'
+    ]);
+
 });
 
 Route::get('/home', 'HomeController@index')->name('home');
