@@ -9,6 +9,12 @@
       </div>
     @endif
 
+    @if(Session::has('post_deleted'))
+        <div class="alert alert-warning">
+            <strong>{{session('post_deleted')}}</strong>
+        </div>
+    @endif
+
     <table class="table">
         <thead>
         <tr>
@@ -30,7 +36,7 @@
 
 
                     <td>{{$post->id}}</td>
-                    <td><img src="{{$post->photo ? $post->photo->path : '/images/imageComingSoon.jpg'}}"   alt="" width="50px"></td>
+                    <td><img src="{{$post->photo ? $post->photo->path : 'images/imageComingSoon.jpg'}}"   alt="" width="50px"></td>
                     <td>{{$post->title}}</td>
                     <td>{{$post->body}}</td>
                     <td>{{$post->category->name}}</td>

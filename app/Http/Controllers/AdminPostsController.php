@@ -101,10 +101,11 @@ class AdminPostsController extends Controller
        $input =$request->all();
 
        if($file =$request->file('photo_id')){
-           $name =time().$file->getClientOriginalName();
+           $name =time(). $file->getClientOriginalName();
            $file->move('images',$name);
 
            $photo =Photo::create(['path'=>$name]);
+           $input['photo_id']=$photo->id;
        }
        $post->update($input);
 
@@ -121,6 +122,12 @@ class AdminPostsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $post =Post::findOrFail($id);
+
+        unlink(public_path() .$post->photo->path);
+        $post->delete();
+
+        Session::flash('post_deleted','Your Post has been deleted !!');
+        return redirect('/admin/posts');
     }
 }
