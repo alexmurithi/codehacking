@@ -21,7 +21,7 @@ class Admin
             if(Auth::user()->role->name == 'Administrator'){
                 return $next($request);
             }
-
+            return redirect('/');
         }
 
 
