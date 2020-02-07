@@ -3,7 +3,11 @@
 
 @section('content')
     <h2>Posts</h2>
-
+@if(Session::has('post_updated'))
+      <div class="alert alert-info">
+          <strong>{{session('post_updated')}}</strong>
+      </div>
+    @endif
 
     <table class="table">
         <thead>
@@ -33,6 +37,8 @@
 
                     <td>{{$post->created_at->diffForHumans()}}</td>
                     <td>{{$post->updated_at->diffForHumans()}}</td>
+                    <td><a href="{{route('admin.posts.edit',$post->id)}}">Edit</a></td>
+
 
 
 

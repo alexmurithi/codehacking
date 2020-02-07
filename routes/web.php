@@ -60,6 +60,11 @@ Route::group(['middleware'=>'admin'],function(){
         'uses'=>'AdminPostsController@create'
     ]);
 
+    Route::get('admin/posts/{id}/edit',[
+        'as'=>'admin.posts.edit',
+        'uses'=>'AdminPostsController@edit'
+    ]);
+
     Route::get('admin/categories',[
         'as'=>'admin.categories',
         'uses'=>'AdminCategoriesController@index'

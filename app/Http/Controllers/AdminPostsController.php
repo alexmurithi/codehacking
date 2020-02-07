@@ -8,6 +8,7 @@ use App\Photo;
 use App\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class AdminPostsController extends Controller
 {
@@ -51,7 +52,7 @@ class AdminPostsController extends Controller
 
         if($file =$request->file('photo_id')){
             $name =time().$file->getClientOriginalName();
-            $file->move('/images',$name);
+            $file->move('images',$name);
 
             $photo =Photo::create(['path'=>$name]);
             $input['photo_id']=$photo->id;
@@ -82,7 +83,9 @@ class AdminPostsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $post =Post::findOrFail($id);
+        $categories =Category::pluck('name','id')->all();
+        return view('admin.posts.edit',compact('post','categories'));
     }
 
     /**
@@ -94,7 +97,20 @@ class AdminPostsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $post =Post::find($id);
+       $input =$request->all();
+
+       if($file =$request->file('photo_id')){
+           $name =time().$file->getClientOriginalName();
+           $file->move('images',$name);
+
+           $photo =Photo::create(['path'=>$name]);
+       }
+       $post->update($input);
+
+       Session::flash('post_updated','Your post has been updated successfully');
+
+       return redirect('/admin/posts');
     }
 
     /**
