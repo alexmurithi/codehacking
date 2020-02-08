@@ -8,7 +8,7 @@
     @include('includes.form-errors')
 
     <div class="col-lg-3 col-sm-3 col-xs-6">
-        <img src="{{$user->photo->path}}" class="img-responsive img-rounded" alt="">
+        <img src="{{$user->photo ? $user->photo->path : '/images/imageComingSoon.jpg'}}" class="img-responsive img-rounded" alt="">
     </div>
     <div class="col-lg-9 col-sm-9 col xs-6">
         {!! Form::model($user,['method'=>'PATCH','action'=>['AdminUsersController@update',$user->id],'files'=>true]) !!}
