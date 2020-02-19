@@ -4,11 +4,11 @@
     <h2>Comments</h2>
 
     @if(Session::has('comment_moderated'))
-           <div class="alert alert-info">
-               <strong>{{session('comment_moderated')}}</strong>
-           </div>
+        <div class="alert alert-info">
+            <strong>{{session('comment_moderated')}}</strong>
+        </div>
 
-        @endif
+    @endif
     @if(Session::has('comment_deleted'))
         <div class="alert alert-warning">
             <strong>{{session('comment_deleted')}}</strong>
@@ -37,7 +37,7 @@
 
 
                     <td>{{$comment->id}}</td>
-{{--                    <td><img src="{{$post->photo ? $post->photo->path : 'images/imageComingSoon.jpg'}}"   alt="" width="50px"></td>--}}
+                    {{--                    <td><img src="{{$post->photo ? $post->photo->path : 'images/imageComingSoon.jpg'}}"   alt="" width="50px"></td>--}}
                     <td>{{$comment->post_id}}</td>
                     <td>{{$comment->author}}</td>
                     <td>{{$comment->email}}</td>
@@ -63,7 +63,7 @@
                         @endif
                     </td>
                     <td>
-                     {!! Form::open(['method'=>'DELETE','action'=>['PostCommentsController@destroy',$comment->id]]) !!}
+                        {!! Form::open(['method'=>'DELETE','action'=>['PostCommentsController@destroy',$comment->id]]) !!}
 
                         <div class="form-group">
                             {!! Form::submit('Delete',['class'=>'btn btn-danger']) !!}
@@ -88,4 +88,4 @@
 
         </tbody>
     </table>
-    @stop
+@stop

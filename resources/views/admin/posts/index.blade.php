@@ -38,11 +38,13 @@
                     <td>{{$post->id}}</td>
                     <td><img src="{{$post->photo ? $post->photo->path : 'images/imageComingSoon.jpg'}}"   alt="" width="50px"></td>
                     <td>{{$post->title}}</td>
-                    <td>{{$post->body}}</td>
-                    <td>{{$post->category->name}}</td>
+                    <td>{{ $post->body}}</td>
+                    <td>{{$post->category ? $post->category->name : "Uncategorized"}}</td>
 
                     <td>{{$post->created_at->diffForHumans()}}</td>
                     <td>{{$post->updated_at->diffForHumans()}}</td>
+                    <td><a href="{{route('home.post',$post->id)}}">View Post</a></td>
+                    <td><a href="{{route('admin.comments.show',$post->id)}}">View Comments</a></td>
                     <td><a href="{{route('admin.posts.edit',$post->id)}}">Edit</a></td>
 
 

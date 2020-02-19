@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Comment;
+use App\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -17,7 +18,7 @@ class PostCommentsController extends Controller
     public function index()
 
     {
-        $comments =Comment::all();
+        $comments =Comment::orderBy('id','desc')->get();
         return view('admin.comments.index',compact('comments'));
     }
 
@@ -44,7 +45,8 @@ class PostCommentsController extends Controller
             'post_id'=>$request->post_id,
             'author'=>$user->name,
             'email'=>$user->email,
-            'body'=>$request->body
+            'body'=>$request->body,
+            'user_photo'=>$user->photo->path
         ]);
         Session::flash('comment_submitted','Your comment has been submitted and is awaiting approval !!');
         return redirect()->back();
@@ -58,7 +60,10 @@ class PostCommentsController extends Controller
      */
     public function show($id)
     {
-        //
+        $post =Post::findOrFail($id);
+        $comments =$post->comments;
+
+        return view('admin.comments.show',compact('comments'));
     }
 
     /**
@@ -94,6 +99,8 @@ class PostCommentsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Comment::find($id)->delete();
+        Session::flash('comment_deleted','Comment deleted successfully !');
+        return redirect()->back();
     }
 }

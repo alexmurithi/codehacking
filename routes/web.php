@@ -71,6 +71,12 @@ Route::group(['middleware'=>'admin'],function(){
         'uses'=>'AdminPostsController@edit'
     ]);
 
+    Route::get('admin/comments/{id}',[
+        'as'=>'admin.comments.show',
+        'uses'=>'PostCommentsController@show'
+
+    ]);
+
     Route::get('admin/categories',[
         'as'=>'admin.categories',
         'uses'=>'AdminCategoriesController@index'
@@ -99,5 +105,9 @@ Route::group(['middleware'=>'admin'],function(){
 
 
 });
+
+// Route::group(['middleware'=>'auth',function(){
+//
+// }]);
 
 Route::get('/home', 'HomeController@index')->name('home');

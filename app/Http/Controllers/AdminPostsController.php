@@ -134,7 +134,8 @@ class AdminPostsController extends Controller
     public function post($id){
 
         $post =Post::find($id);
+        $comments =$post->comments()->where('is_active',1)->orderBy('created_at','desc')->get();
 
-        return view('post',compact('post'));
+        return view('post',compact('post','comments'));
     }
 }

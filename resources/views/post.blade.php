@@ -45,6 +45,7 @@
     <!-- Blog Comments -->
 
     <!-- Comments Form -->
+    @if(Auth::check())
     <div class="well">
         <h4>Leave a Comment:</h4>
 
@@ -63,49 +64,65 @@
 
     </div>
 
+      @else
+      <div class="alert alert-warning">
+        <strong>You are not allowed to comment!</strong>
+      </div>
+    @endif
+
     <hr>
 
     <!-- Posted Comments -->
 
     <!-- Comment -->
-
+    @if($comments)
+        @foreach($comments as $comment)
     <div class="media">
         <a class="pull-left" href="#">
-            <img class="media-object" src="http://placehold.it/64x64" alt="">
+            <img class="media-object img-rounded" src="{{$comment->user_photo ? $comment->user_photo : '/images/imageComingSoon.jpg'}}" width="50px" alt="">
         </a>
         <div class="media-body">
-            <h4 class="media-heading">
-                <small>August 25, 2014 at 9:30 PM</small>
+            <h4 class="media-heading">{{$comment->author}}
+                <small>{{$comment->created_at->diffForHumans()}}</small>
             </h4>
-            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-        </div>
-    </div>
+            {{$comment->body}}
 
-    <!-- Comment -->
-    <div class="media">
-        <a class="pull-left" href="#">
-            <img class="media-object" src="http://placehold.it/64x64" alt="">
-        </a>
-        <div class="media-body">
-            <h4 class="media-heading">Start Bootstrap
-                <small>August 25, 2014 at 9:30 PM</small>
-            </h4>
-            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-            <!-- Nested Comment -->
-            <div class="media">
-                <a class="pull-left" href="#">
-                    <img class="media-object" src="http://placehold.it/64x64" alt="">
-                </a>
-                <div class="media-body">
-                    <h4 class="media-heading">Nested Start Bootstrap
-                        <small>August 25, 2014 at 9:30 PM</small>
-                    </h4>
-                    Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-                </div>
-            </div>
-            <!-- End Nested Comment -->
+            {!!Form::open(['method'=>'POST','action'=>'CommentRepliesController@store'])!!}
+                <input type="hidden" name="comment_id" value="{{$comment->id}}">
+
+                 <div class="form-group">
+                    {!!Form::textarea('body',null,['class'=>'form-control','rows'=>'1'])!!}
+                 </div>
+              {!! Form::submit('Submit',['class'=>'btn btn-primary']) !!}
+
+            {!!Form::close()!!}
+
+     @if($comment->replies)
+
+     @foreach($comment->replies as $reply)
+     <div class="media" style="padding:10px 0;">
+         <a class="pull-left" href="#">
+             <img class="media-object" src="{{$comment->user_photo ? $comment->user_photo : '/images/imageComingSoon.jpg'}}" width="30px" alt="">
+         </a>
+         <div class="media-body">
+             <h4 class="media-heading">{{$reply->author}}
+                 <small>{{$reply->created_at->diffForHumans()}}</small>
+             </h4>
+             {{$reply->body}}
+
+         </div>
+
+     </div>
+        @endforeach
+
+         @endif
+
+
         </div>
     </div>
+    @endforeach
+@endif
+
 
 
 
