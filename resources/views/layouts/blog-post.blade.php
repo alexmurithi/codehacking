@@ -12,7 +12,7 @@
     <title>Blog Post - Start Bootstrap Template</title>
 
     <!-- Bootstrap Core CSS -->
-{{--        <link href="{{asset('css/app.css')}}" rel="stylesheet">--}}
+      <!-- <link href="{{asset('css/app.css')}}" rel="stylesheet"> -->
 
     <link href="{{asset('css/libs.css')}}" rel="stylesheet">
 
@@ -140,7 +140,7 @@
     <footer>
         <div class="row">
             <div class="col-lg-12">
-                <p>Copyright &copy; Your Website 2014</p>
+                <p>Copyright &copy; Your Website 2020</p>
             </div>
         </div>
         <!-- /.row -->
@@ -152,6 +152,8 @@
 <!-- jQuery -->
 <script src="{{asset('js/libs.js')}}"></script>
 <script src="{{asset('js/app.js')}}"></script>
+
+@yield('scripts')
 
 </body>
 

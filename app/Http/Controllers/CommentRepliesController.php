@@ -42,7 +42,8 @@ class CommentRepliesController extends Controller
           'comment_id'=>$input['comment_id'],
           'author'=>$user->name,
           'email'=>$user->email,
-          'body'=>$input['body']
+          'body'=>$input['body'],
+          'user_photo'=>$user->photo->path
         ]);
 
         return redirect()->back();

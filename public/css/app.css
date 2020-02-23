@@ -11360,3 +11360,7 @@ a.text-dark:focus {
   padding-top: 0;
 }
 
+.comment-reply {
+  display: none;
+}
+
